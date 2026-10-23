@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-STAR LINK CODE HACK — Professional Edition (Real-time Proxy Checker Integrated)
+STAR LINK CODE HACK — Professional Edition
 ============================================
 Production-grade RuiJie captive-portal voucher scanner.
 
@@ -54,421 +54,10 @@ KEY_RECHECK_INTERVAL: float = 600.0
 
 SUCCESS_FILE_TARGETS: Tuple[str, ...] = ADMINS
 
-# Configured Proxy List with user's provided proxies
-PROXY_LIST: List[str] = [
-    "http://45.91.248.107:80",
-    "socks5://45.84.13.153:1080",
-    "socks5://80.72.180.122:1080",
-    "http://159.65.230.46:8888",
-    "http://202.133.88.173:80",
-    "http://94.130.50.22:3129",
-    "http://206.237.107.157:8080",
-    "http://170.78.210.120:9999",
-    "http://195.158.8.123:3128",
-    "http://154.201.127.198:8080",
-    "http://205.164.192.115:999",
-    "http://149.2.83.248:999",
-    "http://37.110.145.57:8081",
-    "http://138.99.176.35:999",
-    "http://102.244.78.61:8089",
-    "http://112.169.99.71:8043",
-    "http://171.245.71.194:2032",
-    "http://87.121.104.141:3128",
-    "http://101.36.112.205:1081",
-    "http://188.68.52.45:80",
-    "http://123.0.18.42:10000",
-    "http://45.194.91.7:8080",
-    "http://114.130.89.94:1080",
-    "http://185.132.1.221:4145",
-    "http://157.20.122.98:8080",
-    "http://41.65.71.136:1981",
-    "http://203.205.49.2:10044",
-    "http://201.165.146.146:999",
-    "http://46.203.233.116:3128",
-    "http://116.204.166.200:8080",
-    "http://172.104.48.100:3128",
-    "http://43.252.236.158:8080",
-    "http://116.196.150.180:17981",
-    "http://102.244.78.61:8082",
-    "http://219.93.101.62:80",
-    "http://102.244.78.61:8086",
-    "http://4.227.178.164:3128",
-    "http://103.156.75.243:3125",
-    "http://103.188.168.225:8080",
-    "http://38.188.97.166:999",
-    "http://34.44.49.215:80",
-    "http://217.29.208.206:9999",
-    "http://145.220.227.145:8080",
-    "http://203.205.49.2:10178",
-    "http://103.163.13.14:1111",
-    "http://102.244.78.61:8081",
-    "http://101.206.186.99:8080",
-    "http://130.110.103.245:3128",
-    "http://45.80.151.33:3128",
-    "http://160.25.54.34:7777",
-    "http://112.202.247.74:8082",
-    "http://102.244.78.61:8088",
-    "http://8.213.151.128:3128",
-    "http://85.30.219.207:8080",
-    "http://78.85.41.217:10808",
-    "http://89.251.21.163:8080",
-    "http://195.181.40.34:8080",
-    "http://200.5.120.198:8080",
-    "http://138.197.68.35:4857",
-    "http://103.174.122.230:3128",
-    "http://201.7.31.55:8080",
-    "http://187.251.222.69:8080",
-    "http://46.4.78.103:3128",
-    "http://103.162.136.23:8080",
-    "http://195.26.224.135:80",
-    "http://110.171.40.132:8080",
-    "http://171.245.71.236:2103",
-    "http://181.119.103.237:999",
-    "http://45.229.17.6:999",
-    "http://139.59.59.122:8118",
-    "http://186.96.97.203:999",
-    "http://185.146.138.162:8080",
-    "http://181.205.204.19:999",
-    "http://47.85.161.37:3128",
-    "http://46.197.136.14:8080",
-    "http://49.149.119.38:8081",
-    "http://91.107.248.132:1080",
-    "http://177.53.155.24:999",
-    "http://34.43.46.91:80",
-    "http://209.14.115.9:999",
-    "http://116.101.84.186:2051",
-    "http://161.97.94.168:6001",
-    "http://47.236.86.147:443",
-    "http://138.204.95.193:8989",
-    "http://122.52.185.85:8082",
-    "http://203.19.38.114:1080",
-    "http://160.19.112.18:8080",
-    "http://103.102.14.48:1111",
-    "http://103.76.12.158:8080",
-    "http://36.88.111.250:8787",
-    "http://160.19.18.219:8080",
-    "http://157.10.97.91:7000",
-    "http://45.118.35.169:8080",
-    "http://103.182.22.58:8000",
-    "http://180.180.156.92:80",
-    "http://154.18.255.25:1111",
-    "http://82.152.163.174:80",
-    "http://47.237.2.245:808",
-    "http://148.81.121.5:8080",
-    "http://177.234.217.84:999",
-    "http://103.155.130.134:8082",
-    "http://163.61.191.7:3128",
-    "http://45.198.20.202:8085",
-    "http://103.187.162.221:8282",
-    "http://180.191.124.188:5555",
-    "http://200.59.186.55:999",
-    "http://14.225.2.98:808",
-    "http://163.227.252.5:8080",
-    "http://38.183.183.114:999",
-    "http://181.119.190.196:999",
-    "http://103.181.255.219:7777",
-    "http://38.75.82.217:999",
-    "http://124.83.118.156:8081",
-    "http://62.146.235.9:8080",
-    "http://103.176.97.108:3128",
-    "http://34.140.137.151:80",
-    "http://177.93.57.83:12345",
-    "http://103.180.123.27:8080",
-    "http://47.237.2.245:5060",
-    "http://170.80.202.216:999",
-    "http://187.251.224.167:80",
-    "http://103.253.124.98:80",
-    "http://190.14.231.137:999",
-    "http://210.87.125.57:8080",
-    "http://103.151.23.74:8080",
-    "http://163.172.167.48:80",
-    "http://1.20.178.221:80",
-    "http://195.114.209.50:80",
-    "http://47.80.60.84:3128",
-    "http://200.8.19.122:8080",
-    "http://38.19.43.187:999",
-    "http://222.252.97.26:8008",
-    "http://45.198.10.194:9191",
-    "http://14.225.240.23:8562",
-    "http://161.49.87.222:8095",
-    "http://190.128.201.236:3128",
-    "http://103.172.42.93:1111",
-    "http://92.118.230.202:10808",
-    "http://201.7.31.45:8080",
-    "http://177.177.59.121:8080",
-    "http://36.66.180.186:8080",
-    "http://160.250.6.18:8082",
-    "http://181.204.81.179:999",
-    "http://190.90.21.35:999",
-    "http://177.242.132.38:999",
-    "http://38.236.240.202:999",
-    "http://182.53.202.217:80",
-    "http://181.205.205.170:999",
-    "http://88.135.210.179:8080",
-    "http://89.251.21.163:8080",
-    "http://195.181.40.34:8080",
-    "http://200.5.120.198:8080",
-    "http://138.197.68.35:4857",
-    "http://103.174.122.230:3128",
-    "http://201.7.31.55:8080",
-    "http://187.251.222.69:8080",
-    "http://46.4.78.103:3128",
-    "http://103.162.136.23:8080",
-    "http://195.26.224.135:80",
-    "http://110.171.40.132:8080",
-    "http://171.245.71.236:2103",
-    "http://181.119.103.237:999",
-    "http://45.229.17.6:999",
-    "http://139.59.59.122:8118",
-    "http://186.96.97.203:999",
-    "http://185.146.138.162:8080",
-    "http://181.205.204.19:999",
-    "http://47.85.161.37:3128",
-    "http://46.197.136.14:8080",
-    "http://49.149.119.38:8081",
-    "http://91.107.248.132:1080",
-    "http://177.53.155.24:999",
-    "http://34.43.46.91:80",
-    "http://209.14.115.9:999",
-    "http://116.101.84.186:2051",
-    "http://161.97.94.168:6001",
-    "http://47.236.86.147:443",
-    "http://138.204.95.193:8989",
-    "http://122.52.185.85:8082",
-    "http://203.19.38.114:1080",
-    "http://160.19.112.18:8080",
-    "http://103.102.14.48:1111",
-    "http://103.76.12.158:8080",
-    "http://36.88.111.250:8787",
-    "http://160.19.18.219:8080",
-    "http://157.10.97.91:7000",
-    "http://45.118.35.169:8080",
-    "http://103.182.22.58:8000",
-    "http://180.180.156.92:80",
-    "http://180.195.99.168:8081",
-    "http://131.196.177.249:999",
-    "http://192.203.0.118:999",
-    "http://134.185.85.16:3128",
-    "http://102.209.0.138:8080",
-    "http://168.243.77.81:999",
-    "http://179.184.163.133:44443",
-    "http://151.158.133.165:8080",
-    "http://103.133.24.75:8080",
-    "http://181.225.53.141:999",
-    "http://188.93.147.168:8118",
-    "http://1.20.101.24:80",
-    "http://58.33.109.114:2021",
-    "http://1.20.101.23:80",
-    "http://143.0.203.173:8080",
-    "http://118.69.183.149:8080",
-    "http://171.236.130.227:12588",
-    "http://46.171.28.162:59311",
-    "http://187.249.37.227:2024",
-    "http://103.250.151.22:1111",
-    "http://157.100.12.149:999",
-    "http://103.154.76.169:8080",
-    "http://45.195.249.146:8080",
-    "http://90.156.160.234:3128",
-    "http://171.245.71.144:2032",
-    "http://175.107.30.126:8080",
-    "http://102.244.78.61:8085",
-    "http://38.188.63.115:8081",
-    "http://103.13.221.149:20000",
-    "http://197.248.75.221:8080",
-    "http://171.236.130.227:27813",
-    "http://122.246.4.30:17981",
-    "http://46.161.49.174:10809",
-    "http://38.210.160.159:8080",
-    "http://61.118.38.234:60808",
-    "http://182.253.38.179:3128",
-    "http://140.238.32.108:3128",
-    "http://95.84.164.92:8998",
-    "http://177.53.155.29:999",
-    "http://119.188.131.55:17981",
-    "http://85.192.28.252:3128",
-    "http://181.225.73.98:999",
-    "http://103.48.71.138:83",
-    "http://103.162.61.167:8080",
-    "http://209.14.108.105:999",
-    "http://31.202.49.61:33761",
-    "http://165.101.102.25:8088",
-    "http://156.230.176.245:8080",
-    "http://179.1.126.25:999",
-    "http://187.188.171.231:10101",
-    "http://154.62.127.108:999",
-    "http://213.165.185.211:4153",
-    "http://103.23.98.13:3125",
-    "http://154.57.208.127:8080",
-    "http://103.204.211.48:32255",
-    "http://112.201.227.236:5050",
-    "http://38.250.183.132:8069",
-    "http://114.69.225.6:83",
-    "http://103.182.22.223:8000",
-    "http://182.52.113.109:80",
-    "http://1.20.101.23:8080",
-    "http://180.191.1.195:8081",
-    "http://45.229.9.137:8402",
-    "http://38.103.250.205:8080",
-    "http://123.176.126.95:8080",
-    "http://103.177.11.107:8080",
-    "http://201.4.69.240:8080",
-    "http://203.205.49.2:10032",
-    "http://91.26.188.170:8080",
-    "http://78.157.46.76:8090",
-    "http://185.85.111.18:80",
-    "http://191.44.91.60:8080",
-    "http://122.246.3.12:17981",
-    "http://167.249.29.105:999",
-    "http://103.172.42.105:1111",
-    "http://154.19.39.220:8090",
-    "http://103.132.52.189:8080",
-    "http://125.209.110.83:39617",
-    "http://43.240.83.70:8080",
-    "http://103.170.100.96:8080",
-    "http://77.240.102.149:800",
-    "http://160.19.19.102:8080",
-    "http://193.43.140.85:8080",
-    "http://38.188.63.169:8080",
-    "http://66.151.34.89:80",
-    "http://38.51.207.95:999",
-    "http://112.203.214.201:8082",
-    "http://190.61.61.210:999",
-    "http://1.20.178.208:80",
-    "http://69.171.214.160:999",
-    "http://45.125.64.215:443",
-    "http://201.139.180.42:999",
-    "http://167.99.3.26:11180",
-    "http://103.22.99.137:3125",
-    "http://1.20.101.17:80",
-    "http://201.165.187.252:999",
-    "http://103.189.250.89:8090",
-    "http://148.224.7.78:999",
-    "http://23.95.91.167:80",
-    "http://103.217.224.29:8089",
-    "http://201.4.69.113:8080",
-    "http://199.66.183.226:4145",
-    "http://45.232.0.2:8080",
-    "http://157.245.129.129:10000",
-    "http://171.241.0.216:16820",
-    "http://103.35.216.34:8080",
-    "http://159.195.194.242:8080",
-    "http://192.203.0.250:999",
-    "http://38.58.66.167:999",
-    "http://194.150.110.134:80",
-    "http://103.172.42.179:1111",
-    "http://103.41.88.182:83",
-    "http://8.219.94.23:7890",
-    "http://181.78.176.147:999",
-    "http://204.168.225.55:8888",
-    "http://103.48.68.142:83",
-    "http://185.196.61.251:8081",
-    "http://103.112.163.131:8080",
-    "http://91.185.20.162:8080",
-    "http://45.71.185.217:9991",
-    "http://45.190.85.5:999",
-    "http://202.47.188.205:1111",
-    "http://38.156.235.34:999",
-    "http://154.59.56.74:999",
-    "http://103.82.246.23:6080",
-    "http://186.101.251.197:8080",
-    "http://103.81.110.137:3125",
-    "http://190.12.95.170:47029",
-    "http://78.17.98.235:8080",
-    "http://157.66.192.114:8080",
-    "http://186.33.54.194:999",
-    "http://41.65.162.72:1976",
-    "http://103.82.246.21:6080",
-    "http://39.109.113.97:4090",
-    "http://20.33.10.79:443",
-    "http://186.194.160.122:999",
-    "http://157.10.226.93:8080",
-    "http://111.206.4.163:18888",
-    "http://189.124.90.17:7171",
-    "http://171.241.0.216:13023",
-    "http://206.135.47.110:999",
-    "http://45.174.243.160:999",
-    "http://181.188.203.40:999",
-    "http://103.227.187.23:8080",
-    "http://103.55.22.226:8080",
-    "http://103.48.69.99:83",
-    "http://45.191.235.53:999",
-    "http://1.20.101.17:8080",
-    "http://112.169.99.71:8054",
-    "http://38.194.250.66:999",
-    "http://103.217.179.216:8080",
-    "http://74.103.66.15:80",
-    "http://78.155.66.90:8080",
-    "http://200.59.191.242:999",
-    "http://194.67.120.148:10808",
-    "http://179.63.6.167:999",
-    "http://1.4.141.44:8080",
-    "http://111.68.125.34:8080",
-    "http://171.241.0.216:30568",
-    "http://103.158.13.157:3125",
-    "http://157.66.67.16:8080",
-    "http://173.212.234.174:3128",
-    "http://118.69.176.114:8080",
-    "http://112.203.32.62:8082",
-    "http://103.247.21.83:8446",
-    "http://189.1.236.200:3128",
-    "http://49.13.22.249:10806",
-    "http://36.95.208.13:8080",
-    "http://118.71.227.154:2096",
-    "http://68.71.251.134:4145",
-    "http://103.174.122.120:8080",
-    "http://187.188.169.140:999",
-    "http://130.61.148.213:8888",
-    "http://180.180.156.126:8080",
-    "http://124.217.0.75:8082",
-    "http://180.191.98.117:8080",
-    "http://131.196.50.128:8080",
-    "http://181.49.100.190:8080",
-    "http://156.155.50.93:8080",
-    "http://176.88.65.164:8080",
-    "http://103.152.238.77:1080",
-    "http://180.180.156.68:80",
-    "http://170.244.91.65:999",
-    "http://62.146.235.24:8080",
-    "http://103.127.92.161:8090"
-]
+# Optional outbound proxies (unused by default in this build)
+PROXY_LIST: List[str] = []
 _proxy_index = 0
 _proxy_lock = asyncio.Lock()
-
-async def check_proxy_live(proxy_url: str) -> Optional[str]:
-    """Real-time live/dead check for a single proxy."""
-    timeout = aiohttp.ClientTimeout(total=4)
-    try:
-        async with aiohttp.ClientSession(timeout=timeout) as sess:
-            async with sess.get("https://httpbin.org/ip", proxy=proxy_url) as resp:
-                if resp.status == 200:
-                    return proxy_url
-    except Exception:
-        pass
-    return None
-
-async def refresh_live_proxies() -> None:
-    """Filter out dead proxies and keep only working ones at startup."""
-    global PROXY_LIST
-    if not PROXY_LIST:
-        return
-    log.info("Checking real-time proxy health for %d proxies...", len(PROXY_LIST))
-    tasks = [check_proxy_live(p) for p in PROXY_LIST]
-    results = await asyncio.gather(*tasks, return_exceptions=True)
-    live_list = [r for r in results if isinstance(r, str)]
-    if live_list:
-        PROXY_LIST[:] = live_list
-        log.info("Proxy health check complete. Live working proxies: %d/%d", len(PROXY_LIST), len(tasks))
-    else:
-        log.warning("No live proxies responded; keeping original list as fallback.")
-
-async def get_next_proxy() -> Optional[str]:
-    global _proxy_index
-    if not PROXY_LIST:
-        return None
-    async with _proxy_lock:
-        proxy = PROXY_LIST[_proxy_index]
-        _proxy_index = (_proxy_index + 1) % len(PROXY_LIST)
-        return proxy
 
 # ============================================================
 # LOGGING
@@ -1566,9 +1155,8 @@ async def get_session_id(sess: aiohttp.ClientSession, session_url: str,
         "referer": url,
         "user-agent": _UA_HTML,
     }
-    proxy_url = await get_next_proxy()
     try:
-        async with sess.get(url, headers=headers, proxy=proxy_url, allow_redirects=True) as req:
+        async with sess.get(url, headers=headers, allow_redirects=True) as req:
             final = str(req.url)
             m = re.search(r"[?&]sessionId=([a-zA-Z0-9]+)", final)
             return m.group(1) if m else previous_session_id
@@ -1587,10 +1175,9 @@ async def Captcha_Image(sess: aiohttp.ClientSession, session_id: str) -> bytes:
         "user-agent": _UA_HTML,
     }
     params = {"sessionId": session_id, "_t": str(time.time())}
-    proxy_url = await get_next_proxy()
     async with sess.get(
         "https://portal-as.ruijienetworks.com/api/auth/captcha/image",
-        params=params, headers=headers, proxy=proxy_url,
+        params=params, headers=headers,
     ) as req:
         return await req.read()
 
@@ -1604,11 +1191,10 @@ async def Varify_Captcha(sess: aiohttp.ClientSession, session_id: str, text: str
         "user-agent": _UA_HTML,
     }
     payload = {"sessionId": session_id, "authCode": text}
-    proxy_url = await get_next_proxy()
     try:
         async with sess.post(
             "https://portal-as.ruijienetworks.com/api/auth/captcha/verify",
-            headers=headers, json=payload, proxy=proxy_url,
+            headers=headers, json=payload,
         ) as req:
             data = await req.json()
             return session_id if data.get("success") else None
@@ -1658,7 +1244,6 @@ async def Code_Expires_Date(active_id: str) -> Tuple[str, Any]:
         "x-requested-with": "XMLHttpRequest",
     }
     timeout = aiohttp.ClientTimeout(total=10)
-    proxy_url = await get_next_proxy()
     try:
         async with aiohttp.ClientSession(
             connector=_connector, connector_owner=False,
@@ -1666,7 +1251,7 @@ async def Code_Expires_Date(active_id: str) -> Tuple[str, Any]:
         ) as s:
             for url in paths:
                 try:
-                    async with s.get(url, headers=headers, proxy=proxy_url) as req:
+                    async with s.get(url, headers=headers) as req:
                         if req.status != 200:
                             continue
                         resp = await req.json()
@@ -1715,7 +1300,6 @@ async def perform_check(session_url: str, code: str, chat_id: int,
 
     for attempt in range(3):
         timeout = aiohttp.ClientTimeout(total=30)
-        proxy_url = await get_next_proxy()
         try:
             async with aiohttp.ClientSession(
                 connector=_connector, connector_owner=False,
@@ -1759,7 +1343,7 @@ async def perform_check(session_url: str, code: str, chat_id: int,
                     f"?RES=./../expand/res/mrlev58jlgslg49ervu&IS_EG=0&sessionId={session_id}"
                 )
 
-                async with sess.post(_POST_URL, json=payload, headers=post_headers, proxy=proxy_url) as req:
+                async with sess.post(_POST_URL, json=payload, headers=post_headers) as req:
                     response = await req.text()
 
         except Exception as e:
@@ -1973,7 +1557,7 @@ async def check_session_url_improved(session_url: str, use_proxy: bool = False) 
         "accept-language": "en-US,en;q=0.9",
         "user-agent": _UA_HTML,
     }
-    proxy = await get_next_proxy()
+    proxy = None  # proxies disabled by default
     if session is None:
         return False
     try:
@@ -2034,6 +1618,8 @@ async def start_polling():
     backoff = 5
     while True:
         try:
+            # timeout=30: Telegram long-poll window
+            # request_timeout=90: aiohttp must survive past Telegram's window
             await bot.infinity_polling(timeout=30, request_timeout=90)
             return
         except asyncio.CancelledError:
@@ -2079,9 +1665,6 @@ async def _on_shutdown():
 async def main():
     setup_logging()
     log.info("Starting STAR LINK bot …")
-
-    # Real-time proxy live/dead check before starting bot services
-    await refresh_live_proxies()
 
     _get_conn()
     await load_paid_users()
